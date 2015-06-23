@@ -3,7 +3,8 @@ class SessionsController < ApplicationController
     req = request.env["omniauth.auth"]
     @user = User.find_or_create_by_auth(req)
     session[:user_id] = @user.id
-    redirect_to root_path, notice: "Logged in as #{@user.name}"
+    flash[:notice] = "You are logged in as #{@user.name.capitalize}"
+    redirect_to pairs_path
   end
 
   def destroy
