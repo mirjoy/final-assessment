@@ -1,5 +1,6 @@
 class PairsController < ApplicationController
+  before_action :authorize
+
   def index
-    # flash[:error] = "Please sign in if you want to visit this page."
   end
 end

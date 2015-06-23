@@ -13,7 +13,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
       <div class="nav navbar-nav">
-        <li><%= link_to "Sign in with Github", '/auth/github', id: 'github-login' %></li>
+        <% if current_user %>
+          <li><%= link_to "Sign Out", session_path(current_user.id), method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign in with Github", '/auth/github', id: 'github-login' %></li>
+        <% end %>
       </div>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

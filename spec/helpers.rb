@@ -2,10 +2,7 @@ module Helpers
 def user_logs_in_with_github
     visit root_path
     mock_auth_hash
-    within(".nav") do
-      click_link "Sign in with Github"
-    end
-    find("#github-login").click
+    click_link_or_button("Sign in with Github")
   end
 
   def mock_auth_hash
