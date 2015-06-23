@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     user.name = auth_data["info"]["name"]
     user.image = auth_data["info"]["image"]
     user.email = auth_data["info"]["email"]
-    user.github_account = auth_data["extra"]["raw_info"]["html_url"]
+    user.github_account = auth_data["info"]["urls"]["GitHub"]
     user.save
     user
   end

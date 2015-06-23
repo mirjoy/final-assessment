@@ -9,16 +9,14 @@ def user_logs_in_with_github
   end
 
   def mock_auth_hash
-    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
-       provider: "facebook",
-       uid: 827670270665,
-       info:
-        {email: "mirjoy.moser@gmail.com",
-         name: "Miriam Joy"},
-       credentials:
-        {token:
-          "CAAUNZB0W6ps8BAK8xf",
-         expires_at: 1434834483}
-      })
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new({
+      "provider"=>"github",
+      "uid"=>"5142805",
+      "info"=>
+      {"email"=>"miriam@example.com",
+       "name"=>"Miriam",
+       "image"=>"https://avatars.githubusercontent.com/u/5142805?v=3",
+       "urls"=>{"GitHub"=>"https://github.com/mirjoy", "Blog"=>"mirjoy"}}
+    })
   end
 end
