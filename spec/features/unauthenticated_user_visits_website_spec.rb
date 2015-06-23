@@ -9,4 +9,10 @@ RSpec.describe "unauthenticated user visits home page", type: :feature do
     click_link_or_button("Start Pairing")
     expect(current_path).to eq(new_session_path)
   end
+
+  it "cannot visit pairs page" do
+    visit pairs_path
+    expect(page).to have_content("Please sign in if you want to visit this page.")
+    expect(current_path).to eq(root_path)
+  end
 end
