@@ -15,7 +15,11 @@
 
     <h4>Description: <%= @possible_match.description %></p>
     <div class="btn-group">
-      <%= link_to "Reject Match", relationships_path, method: :destroy, class: "btn btn-danger" %>
+        <%= form_for(:relationship, url: relationship_path(current_user.id), method: :delete) do |f| %>
+        <%= f.hidden_field :match_id, value: @possible_match.id %>
+        <%= f.submit "Reject Match", class: "btn btn-danger" %>
+      <% end %>
+
       <%= form_for(:relationship, url: relationships_path, method: :post) do |f| %>
         <%= f.hidden_field :match_id, value: @possible_match.id %>
         <%= f.submit "Accept Match", class: "btn btn-info" %>

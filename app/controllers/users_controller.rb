@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   def show
-    binding.pry
     @matches = User.find(Relationship.potential_matches(current_user))
   end
 
