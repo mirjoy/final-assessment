@@ -32,7 +32,7 @@ RSpec.describe "authenticated user visits match page", type: :feature do
 
   it "can approve a match if the other user already has approved" do
     Relationship.create(action_user_id: other_user.id, second_user_id: user.id, status: "initiated")
-
+binding.pry
     visit relationships_path
     expect(page).to have_content(other_user.name)
 
