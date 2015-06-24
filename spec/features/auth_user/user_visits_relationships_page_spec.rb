@@ -53,16 +53,19 @@ RSpec.describe "authenticated user visits match page", type: :feature do
   end
 
   it "can reject a match" do
-    Relationship.create(action_user_id: other_user.id, second_user_id: user.id, status: "intiated")
+    other_user
 
     visit relationships_path
     click_link_or_button("Reject Match")
     expect(page).to have_content("You will never pair with this person.")
+
+    visit relationships_path
     expect(page).to have_content("You have no pending matches at this time.")
   end
 
   it "a user that has accepted them will show up first" do
-    Relationship.create(action_user_id: other_user.id, second_user_id: user.id, status: "intiated")
+    other_user
+    Relationship.create(action_user_id: other_user.id, second_user_id: user.id, status: "initiated")
     User.create(name: "Tino", uid: "23434")
     User.create(name: "DJ", uid: "sdf3434")
 
