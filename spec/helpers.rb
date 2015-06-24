@@ -1,8 +1,9 @@
 module Helpers
-def user_logs_in_with_github
+  def user_logs_in_with_github
     visit root_path
     mock_auth_hash
     click_link_or_button("Sign in with Github")
+    current_user = User.last
   end
 
   def mock_auth_hash

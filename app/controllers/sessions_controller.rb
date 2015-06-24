@@ -20,11 +20,11 @@ class SessionsController < ApplicationController
 
   def new_user_path
     flash[:notice] = "Welcome #{@user.name.capitalize}!"
-    redirect_to edit_user_path(current_user.id)
+    redirect_to edit_user_path(current_user)
   end
 
   def old_user_path
     flash[:notice] = "You are logged in as #{@user.name.capitalize}"
-    redirect_to pairs_path
+    redirect_to user_path(current_user)
   end
 end

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  has_many :user_languages
+  has_many :languages, through: :user_languages
+
   validates :uid, :name, presence: true
   validates :uid, uniqueness: true
 
