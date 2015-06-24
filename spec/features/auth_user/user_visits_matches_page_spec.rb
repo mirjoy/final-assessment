@@ -16,6 +16,9 @@ RSpec.describe "authenticated user visits match page", type: :feature do
     expect(page).to have_content(lang)
   end
 
+  xit "is notified if they don't have any matches" do
+  end
+
   xit "can approve a match" do
 
   end

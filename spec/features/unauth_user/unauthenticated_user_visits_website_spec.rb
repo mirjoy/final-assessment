@@ -8,7 +8,7 @@ RSpec.describe "unauthenticated user visits home page", type: :feature do
   end
 
   it "cannot visit pairs page" do
-    visit pairs_path
+    visit relationships_path
     expect(page).to have_content("Please sign in if you want to visit this page.")
     expect(current_path).to eq(root_path)
   end
