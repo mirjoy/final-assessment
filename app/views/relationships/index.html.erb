@@ -15,15 +15,21 @@
 
     <h4>Description: <%= @possible_match.description %></p>
     <div class="row">
+      <div class="col-sm-4">&nbsp;</div>
+      <div class="col-sm-2">
         <%= form_for(:relationship, url: relationship_path(current_user.id), method: :delete) do |f| %>
-        <%= f.hidden_field :match_id, value: @possible_match.id %>
-        <%= f.submit "Reject Match", class: "btn btn-danger" %>
-      <% end %>
+          <%= f.hidden_field :match_id, value: @possible_match.id %>
+          <%= f.submit "Reject Match", class: "btn btn-danger" %>
+        <% end %>
+      </div>
 
-      <%= form_for(:relationship, url: relationships_path, method: :post) do |f| %>
-        <%= f.hidden_field :match_id, value: @possible_match.id %>
-        <%= f.submit "Accept Match", class: "btn btn-info" %>
-      <% end %>
+      <div class="col-sm-2">
+        <%= form_for(:relationship, url: relationships_path, method: :post) do |f| %>
+          <%= f.hidden_field :match_id, value: @possible_match.id %>
+          <%= f.submit "Accept Match", class: "btn btn-info" %>
+        <% end %>
+      </div>
+      <div class="col-sm-4">&nbsp;</div>
     </div>
 
   <% end %>
