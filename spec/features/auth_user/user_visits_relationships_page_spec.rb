@@ -4,22 +4,23 @@ RSpec.describe "authenticated user visits match page", type: :feature do
   let!(:user) { user_logs_in_with_github }
   let(:other_user) { User.create(name: "richard", uid: "123") }
 
-  xit "can see a match" do
+  it "can see a match" do
+    other_user
     visit user_path(user)
     click_link_or_button("Find Pairs")
 
     expect(page).to have_content(other_user.name)
-    expect(page).to have_content(lang.name)
   end
 
-  xit "is notified if they don't have any matches" do
+  it "is notified if they don't have any matches" do
     visit user_path(user)
     click_link_or_button("Find Pairs")
 
     expect(page).to have_content("You have no pending matches at this time.")
   end
 
-  xit "can start approving a match if the other user already hasn't done anything" do
+  it "can start approving a match if the other user already hasn't done anything" do
+    other_user
     visit relationships_path
     expect(page).to have_content(other_user.name)
 
@@ -32,12 +33,13 @@ RSpec.describe "authenticated user visits match page", type: :feature do
 
   it "can approve a match if the other user already has approved" do
     Relationship.create(action_user_id: other_user.id, second_user_id: user.id, status: "initiated")
-binding.pry
+    User.create(name: other_user.name, uid: "3434")
+
     visit relationships_path
     expect(page).to have_content(other_user.name)
 
     click_link_or_button("Accept Match")
-    expect(page).to have_content("Congrats!")
+    expect(page).to have_content("Congrats")
 
     visit user_path(user.id)
     expect(page).to have_content(other_user.name)

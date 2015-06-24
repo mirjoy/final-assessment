@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
   before_action :authorize
 
   def index
-    if best_matches && best_matches.empty?
+    if best_matches
       @possible_match = best_matches
     else
       @possible_match = second_best_matches
