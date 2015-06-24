@@ -10,6 +10,17 @@ h2{
   padding-bottom: 20px;
 }
 
+#hero-image {
+  background: url("<%= asset_path("muppets.jpg")%>");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-color: #d3d3d3;
+  width: 100%;
+  height: auto;
+}
+
 .profile-pic {
   width: 300px;
   height: auto;
@@ -19,4 +30,8 @@ h2{
 
 .match-form {
   padding-bottom: 15px;
+}
+
+#pair-finder {
+  margin-top: 30px;
 }

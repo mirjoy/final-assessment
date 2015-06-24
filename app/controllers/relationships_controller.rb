@@ -15,9 +15,9 @@ class RelationshipsController < ApplicationController
     if check_this_relationship_exists_and_update(@match_id)
     else
       @relationship = Relationship.new(action_user_id: current_user.id,
-                                     second_user_id: @match_id,
-                                     status: "initiated"
-                                     )
+                                       second_user_id: @match_id,
+                                       status: "initiated"
+                                       )
       @relationship.save
       flash[:alert] = "We'll let this user know you want to pair."
     end

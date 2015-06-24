@@ -15,7 +15,7 @@ class Seeds
   end
 
   def self.create_users
-   a = User.create(name: "Watts",
+    a = User.create(name: "Watts",
                 image: "https://avatars.githubusercontent.com/u/7582765?v=3",
                 email: "",
                 github_account: "https://github.com/121watts",
@@ -47,7 +47,30 @@ class Seeds
     UserLanguage.create(user_id: c.id, language_id: 2)
     UserLanguage.create(user_id: c.id, language_id: 3)
     UserLanguage.create(user_id: c.id, language_id: 4)
+
+    d = User.create(name: "Horace",
+                image: "https://avatars.githubusercontent.com/u/1227440?v=3",
+                email: "",
+                github_account: "https://github.com/worace",
+                description: "need help herding some boids",
+                uid: "horaceuid"
+                )
+    UserLanguage.create(user_id: d.id, language_id: 1)
+    UserLanguage.create(user_id: d.id, language_id: 3)
+    UserLanguage.create(user_id: d.id, language_id: 4)
+
+    e = User.create(name: "Jeff",
+                image: "https://avatars.githubusercontent.com/u/43102?v=3",
+                email: "",
+                github_account: "https://github.com/jcasimir",
+                description: "my fave language is markdown",
+                uid: "jeffsuid"
+                )
+    UserLanguage.create(user_id: e.id, language_id: 1)
+    UserLanguage.create(user_id: e.id, language_id: 3)
+    UserLanguage.create(user_id: e.id, language_id: 4)
   end
 end
 
+puts "Creating seeds"
 Seeds.create
