@@ -23,5 +23,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'better_errors'
   gem 'database_cleaner'
+  gem 'simplecov'
 end
 

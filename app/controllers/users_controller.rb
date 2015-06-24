@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
   def update
     language_ids = (params[:user].find_all { |k,v| v == "1" }).map {|arr| arr[0]}
+
     if current_user.update(description: params[:user][:description])
       update_user_languages(current_user, language_ids)
 
