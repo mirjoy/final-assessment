@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   validates :uid, :name, presence: true
   validates :uid, uniqueness: true
+  validates :description, length: { maximum: 500 }
   scope :all_except, -> (user) { where.not(id: user) }
 
   def self.find_or_create_by_auth(auth_data)

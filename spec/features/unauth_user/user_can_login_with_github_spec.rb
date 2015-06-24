@@ -13,4 +13,14 @@ RSpec.describe "user logins with github the first time" do
     click_link_or_button("Submit")
     expect(page).to have_content("Matches")
   end
+
+  it "can't fill in more than 500 words in the description" do
+    user_logs_in_with_github
+    long_string = (1..500).to_a.join
+
+    fill_in("user[description]", with: long_string)
+    click_link_or_button("Submit")
+
+    expect(page).to have_content("Please use 500 words or fewer.")
+  end
 end
