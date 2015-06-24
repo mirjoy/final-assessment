@@ -9,3 +9,10 @@ h1 {
 h2{
   padding-bottom: 20px;
 }
+
+.profile-pic {
+  width: 300px;
+  height: auto;
+  border-radius: 50px;
+  padding-bottom: 20px;
+}

@@ -3,6 +3,6 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   resources :sessions, only: [:destroy]
-  resources :relationships, only: [:index]
+  resources :relationships, only: [:index, :create, :destroy]
   resources :users, only: [:show, :update, :edit]
 end

@@ -1,0 +1,16 @@
+<div class="text-center">
+  <% if @possible_matches  %>
+    <% @possible_matches.each do |match| %>
+      <%= image_tag(match.image, class: "profile-pic") %>
+      <h4>Name: <%= match.name %></h4>
+      <h4><%= link_to "My Github", match.github_account %></h4>
+      <h4>Description: <%= match.description %></p>
+      <div class="btn-group">
+        <%= link_to "Accept Match", relationships_path, method: :post, class: "btn btn-info" %>
+        <%= link_to "Reject Match", relationships_path, method: :destroy, class: "btn btn-danger" %>
+      </div>
+    <% end %>
+  <% else %>
+    You have no pending matches at this time.
+  <% end %>
+</div>
