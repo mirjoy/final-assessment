@@ -5,7 +5,7 @@ RSpec.describe "authenticated user visits match page", type: :feature do
     @user = user_logs_in_with_github
   end
 
-  it "can see a match" do
+  xit "can see a match" do
     lang = Language.create(name: "Javascript")
     user2 = User.create(name: "richard", uid: "123")
     UserLanguage.create(user_id: user2.id, language_id: lang.id)
@@ -17,15 +17,24 @@ RSpec.describe "authenticated user visits match page", type: :feature do
     expect(page).to have_content(lang.name)
   end
 
-  it "is notified if they don't have any matches" do
+  xit "is notified if they don't have any matches" do
     visit user_path(@user)
     click_link_or_button("Find Pairs")
 
     expect(page).to have_content("You have no pending matches at this time.")
   end
 
-  xit "can approve a match" do
+  it "can approve a match" do
+    lang = Language.create(name: "Javascript")
+    user2 = User.create(name: "richard", uid: "123")
+    UserLanguage.create(user_id: user2.id, language_id: lang.id)
 
+    visit relationships_path
+    expect(page).to have_content(user2.name)
+
+    click_link_or_button("Accept Match")
+    visit user_path(@user)
+    expect(page).to have_content(user2.name)
   end
 
   xit "can reject a match" do

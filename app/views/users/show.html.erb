@@ -1,12 +1,19 @@
 <div class="text-center">
   <h2>Your Matches</h2>
-  <% if @matches %>
-    <% @matches.each do |match| %>
-      <h4><%= match.name %></h4>
+    <div class="row">
+      <% if @matches %>
+        <% @matches.each do |match| %>
+        <div class="col-sm-6">
+          <h4><%= match.name %></h4>
+          <p><%= image_tag(match.image, class: "profile-pic") %></p>
+        </div>
+        <% end %>
+    </div>
+    <% else %>
+      <h4>You have no matches at this time.</h4>
     <% end %>
-  <% else %>
-    <h4>You have no matches at this time.</h4>
-  <% end %>
 
-  <%= link_to "Find Pairs", relationships_path, class: "btn btn-info btn-lg" %>
+  <div class="row">
+    <%= link_to "Find Pairs", relationships_path, class: "btn btn-info btn-lg" %>
+  </div>
 </div>

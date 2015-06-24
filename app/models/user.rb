@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   validates :uid, :name, presence: true
   validates :uid, uniqueness: true
+  scope :all_except, -> (user) { where.not(id: user) }
 
   def self.find_or_create_by_auth(auth_data)
     user = find_or_create_by_uid(auth_data["uid"])
@@ -17,9 +18,5 @@ class User < ActiveRecord::Base
 
   def self.find_or_create_by_uid(id)
     User.find_by(uid: id) || User.new(uid: id)
-  end
-
-  def self.all_except(current_user)
-    where.not(id: current_user.id)
   end
 end

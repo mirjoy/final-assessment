@@ -23,10 +23,9 @@ ActiveRecord::Schema.define(version: 20150624012825) do
   end
 
   create_table "relationships", force: :cascade do |t|
-    t.integer  "user_one_id"
-    t.integer  "user_two_id"
+    t.integer  "action_user_id"
+    t.integer  "second_user_id"
     t.string   "status"
-    t.string   "action_user_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
