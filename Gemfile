@@ -22,5 +22,6 @@ group :development, :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'better_errors'
+  gem 'database_cleaner'
 end
 

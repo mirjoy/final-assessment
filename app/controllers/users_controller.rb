@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
   def show
-    @matches = User.find(Relationship.where("action_user_id = ? or second_user_id = ?", 1, 1)
-                    .where(status: "friends").pluck(:action_user_id, :second_user_id)
-                    .flatten - [current_user.id])
+    binding.pry
+    @matches = User.find(Relationship.potential_matches(current_user))
   end
 
   def edit

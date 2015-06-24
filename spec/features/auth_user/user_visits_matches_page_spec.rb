@@ -5,39 +5,61 @@ RSpec.describe "authenticated user visits match page", type: :feature do
     @user = user_logs_in_with_github
   end
 
-  xit "can see a match" do
+  it "can see a match" do
     lang = Language.create(name: "Javascript")
     user2 = User.create(name: "richard", uid: "123")
     UserLanguage.create(user_id: user2.id, language_id: lang.id)
 
-    visit user_path(@user)
+    visit user_path(@user.id)
     click_link_or_button("Find Pairs")
 
     expect(page).to have_content(user2.name)
     expect(page).to have_content(lang.name)
   end
 
-  xit "is notified if they don't have any matches" do
-    visit user_path(@user)
+  it "is notified if they don't have any matches" do
+    visit user_path(@user.id)
     click_link_or_button("Find Pairs")
 
     expect(page).to have_content("You have no pending matches at this time.")
   end
 
-  it "can approve a match" do
-    lang = Language.create(name: "Javascript")
+  it "can start approving a match if the other user already hasn't done anything" do
     user2 = User.create(name: "richard", uid: "123")
-    UserLanguage.create(user_id: user2.id, language_id: lang.id)
 
     visit relationships_path
     expect(page).to have_content(user2.name)
 
     click_link_or_button("Accept Match")
-    visit user_path(@user)
+    expect(page).to have_content("We'll let this user know you want to pair.")
+
+    visit user_path(@user.id)
+    expect(page).not_to have_content(user2.name)
+  end
+
+  it "can approve a match if the other user already has approved" do
+    user2 = User.create(name: "richard", uid: "123")
+    Relationship.create(action_user_id: user2.id, second_user_id: @user.id, status: "initiated")
+
+    visit relationships_path
+    expect(page).to have_content(user2.name)
+
+    click_link_or_button("Accept Match")
+    expect(page).to have_content("You have a new match!")
+
+    visit user_path(@user.id)
     expect(page).to have_content(user2.name)
   end
 
-  xit "can reject a match" do
+  it "won't see a user if they've rejected the match" do
+    user2 = User.create(name: "richard", uid: "123")
+    Relationship.create(action_user_id: user2.id, second_user_id: @user.id, status: "enemies")
+
+    visit relationships_path
+    expect(page).to have_content("You have no pending matches at this time.")
+  end
+
+  it "can reject a match" do
 
   end
 # When viewing the Dashboard, I should see a shiny button inviting me to "Find Pairs".

@@ -1,7 +1,9 @@
 <div class="text-center">
   <h2>Your Matches</h2>
     <div class="row">
-      <% if @matches %>
+      <% if @matches.empty? %>
+        <h4>You have no matches at this time.</h4>
+      <% else %>
         <% @matches.each do |match| %>
         <div class="col-sm-6">
           <h4><%= match.name %></h4>
@@ -9,8 +11,6 @@
         </div>
         <% end %>
     </div>
-    <% else %>
-      <h4>You have no matches at this time.</h4>
     <% end %>
 
   <div class="row">
