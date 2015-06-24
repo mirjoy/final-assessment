@@ -12,11 +12,16 @@ RSpec.describe "authenticated user visits match page", type: :feature do
 
     visit user_path(@user)
     click_link_or_button("Find Pairs")
+
     expect(page).to have_content(user2.name)
-    expect(page).to have_content(lang)
+    expect(page).to have_content(lang.name)
   end
 
-  xit "is notified if they don't have any matches" do
+  it "is notified if they don't have any matches" do
+    visit user_path(@user)
+    click_link_or_button("Find Pairs")
+
+    expect(page).to have_content("You have no pending matches at this time.")
   end
 
   xit "can approve a match" do

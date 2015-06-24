@@ -18,4 +18,8 @@ class User < ActiveRecord::Base
   def self.find_or_create_by_uid(id)
     User.find_by(uid: id) || User.new(uid: id)
   end
+
+  def self.all_except(current_user)
+    where.not(id: current_user.id)
+  end
 end
